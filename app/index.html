@@ -34,11 +34,45 @@
     <div class="container">
       <div class="row">
         <!-- Div to center form in the html !-->
-        <div class="col-sm-6 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+        <div class="col-sm-4 col-md-4 col-lg-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
           <a class="btn btn-block btn-social btn-facebook">
             <span class="fa fa-facebook"></span>
             <div class="text-center">Uber Facebook regiestreren</div>
           </a>
+          <form id="form">
+            <div class="form-group">
+              <!-- Name !-->
+              <label for="name">Vorname</label>
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></div>
+                <input type="text" class="form-control" id="name" placeholder="">
+              </div>
+              <!-- Last Name !-->
+              <label for="lastname">Nachname</label>
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></div>
+                <input type="text" class="form-control" id="lastname" placeholder="">
+              </div>
+              <!-- Mitgliedsname !-->
+              <label for="nickname">Mitgliedsname</label>
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></div>
+                <input type="text" class="form-control" id="nickname" placeholder="Dein Mitgliedsname ist offentlich">
+              </div>
+              <!-- Email !-->
+              <label for="email">E-Mail</label>
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                <input type="email" class="form-control" id="email" placeholder="">
+              </div>
+              <!-- Password !-->
+              <label for="password">Passwort</label>
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></div>
+                <input type="password" class="form-control" id="password" placeholder="">
+              </div>
+            </div> <!-- End of Form Group !-->
+          </form>
 
         </div>
     </div>

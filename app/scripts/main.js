@@ -45,54 +45,53 @@ $(document).ready(function () {
   //check if input boxes are blank
   function validateBlank(inputObject) {
 
+    var allBlank = false;
+
     if (inputObject.name == ""){
       //console.log($("#name").parentNode.addClass("has-error"));
       $("#name").parent().addClass('has-error');
-      var popover = $("#name-bubble").popover({
-        trigger : 'manual',
-        placement : 'bottom',
-        content : 'muss ausgefullt werden',
-        template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
-      });
 
-      $("#name-bubble").popover('show');
-      window.setTimeout(function () {
-        $("#name-bubble").popover('hide');
-      }, 5000);
+      showPopOver("name");
+      allBlank = true;
 
     }
 
     if (inputObject.lastName == ""){
       console.log("lastname cannot be blank");
       $("#lastname").parent().addClass('has-error');
-      var popover = $("#lastName-bubble").popover({
-        trigger : 'manual',
-        placement : 'bottom',
-        content : 'muss ausgefullt werden',
-        template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
-      });
 
-      $("#lastName-bubble").popover('show');
-      window.setTimeout(function () {
-        $("#lastName-bubble").popover('hide');
-      }, 5000);
+      showPopOver("lastName");
+      allBlank = true;
     }
 
     if (inputObject.nickName == ""){
-      console.log("nickName cannot be blank");
       $("#nickname").parent().addClass('has-error');
+
+      showPopOver("nickname");
+      allBlank = true;
     }
 
     if (inputObject.email == ""){
       console.log("email cannot be blank");
       $("#email").parent().addClass('has-error');
+
+      showPopOver("email");
+      allBlank = true;
+
     }
 
     if (inputObject.pass == ""){
       console.log("pass cannot be blank");
       $("#password").parent().addClass('has-error');
+
+      showPopOver("password");
+      allBlank = true;
     }
 
+    if (allBlank == true)
+      return false;
+    else
+      return true;
 
   }
 
@@ -158,4 +157,21 @@ $(document).ready(function () {
 
   }
 
+  function showPopOver(el) {
+
+    var popover = $("#" + el + "-bubble").popover({
+      trigger : 'manual',
+      placement : 'bottom',
+      content : 'muss ausgefullt werden',
+      template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
+    });
+
+    $("#" + el + "-bubble").popover('show');
+
+    //hide popover after some time.
+    window.setTimeout(function () {
+      $("#" + el + "-bubble").popover('hide');
+    }, 5000);
+
+  }
 });

@@ -21,6 +21,16 @@ body {
   background-color: #f8f7f3;
 }
 
+#header{
+  margin-top: 10px;
+  width: 100%;
+}
+#header:after,
+#header:before{
+  content:"\00a0\00a0\00a0\00a0\00a0";
+  text-decoration:line-through;
+}
+
 #form{
   margin-top: 15px;
   padding: 20px;

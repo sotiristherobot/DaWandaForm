@@ -27,6 +27,9 @@ $(document).ready(function () {
     //check valid email
     validateEmail(inputObject.email);
 
+    //check if terms are checked
+    validateTerms();
+
   });
 
 
@@ -73,6 +76,13 @@ $(document).ready(function () {
     }
     else
       console.log("success");
+  }
+
+  function validateTerms() {
+
+    if (!$("#terms").prop("checked")){
+      console.log("terms are not checked");
+    }
   }
 
 });

@@ -101,12 +101,13 @@ $(document).ready(function () {
     var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (!email.match(regex)){
-      console.log("invalid email");
-      return true;
+      //console.log("invalid email");
+      $("#email").parent().addClass('has-error');
+      return false;
     }
     else
-      console.log("success");
-      return false;
+      //console.log("success");
+      return true;
   }
 
   function validateTerms() {
@@ -157,12 +158,13 @@ $(document).ready(function () {
 
   }
 
-  function showPopOver(el) {
+  //optionally send to this function a different msg to be displayed instead of the default one.
+  function showPopOver(el, msg) {
 
     var popover = $("#" + el + "-bubble").popover({
       trigger : 'manual',
       placement : 'bottom',
-      content : 'muss ausgefullt werden',
+      content : msg || "muss ausgefullt werden",
       template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
     });
 

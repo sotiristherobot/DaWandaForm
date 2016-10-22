@@ -22,7 +22,7 @@ $(document).ready(function () {
     };
 
     //check if there are any blank fields
-    //validateBlank(inputObject);
+    validateBlank(inputObject);
 
     //check valid email
     validateEmail(inputObject.email);
@@ -46,15 +46,36 @@ $(document).ready(function () {
   function validateBlank(inputObject) {
 
     if (inputObject.name == ""){
-      console.log("name cannot be blank");
-
       //console.log($("#name").parentNode.addClass("has-error"));
       $("#name").parent().addClass('has-error');
+      var popover = $("#name-bubble").popover({
+        trigger : 'manual',
+        placement : 'bottom',
+        content : 'muss ausgefullt werden',
+        template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
+      });
+
+      $("#name-bubble").popover('show');
+      window.setTimeout(function () {
+        $("#name-bubble").popover('hide');
+      }, 5000);
+
     }
 
     if (inputObject.lastName == ""){
       console.log("lastname cannot be blank");
       $("#lastname").parent().addClass('has-error');
+      var popover = $("#lastName-bubble").popover({
+        trigger : 'manual',
+        placement : 'bottom',
+        content : 'muss ausgefullt werden',
+        template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
+      });
+
+      $("#lastName-bubble").popover('show');
+      window.setTimeout(function () {
+        $("#lastName-bubble").popover('hide');
+      }, 5000);
     }
 
     if (inputObject.nickName == ""){
@@ -82,9 +103,11 @@ $(document).ready(function () {
 
     if (!email.match(regex)){
       console.log("invalid email");
+      return true;
     }
     else
       console.log("success");
+      return false;
   }
 
   function validateTerms() {

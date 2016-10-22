@@ -34,7 +34,10 @@ $(document).ready(function () {
     // 1. Desired password length
     // 2. True if you want the password to contain both lowercase and uppercase letters
     // 3. True if you want the password checker to contain at least one special character
-    validatePassword(inputObject.pass,6,true,true);
+    if (validatePassword(inputObject.pass,6,true,true))
+      console.log("Strong Password");
+
+
 
   });
 
@@ -108,6 +111,7 @@ $(document).ready(function () {
       }
     }
 
+    //check if password contains special characters
     if (specialCharacters == true){
       var regex = /([!,%,&,@,#,$,^,*,?,_,~])/;
 
@@ -117,7 +121,18 @@ $(document).ready(function () {
 
     }
 
-    console.log(strength);
+    //decide if password is strong enough
+    if (strength == 1 && !lowerUpperLetters && !specialCharacters)
+      return true;
+    else if (strength == 2 && lowerUpperLetters && !specialCharacters)
+      return true;
+    else if (strength == 2 && !lowerUpperLetters && specialCharacters)
+      return true;
+    else if (strength == 3 && lowerUpperLetters && specialCharacters)
+      return true;
+    else return false;
+
+
   }
 
 });

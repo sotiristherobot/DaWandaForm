@@ -24,20 +24,20 @@ $(document).ready(function () {
     //check if there are any blank fields
     validateBlank(inputObject);
 
-    //check valid email
+    // //check valid email
     validateEmail(inputObject.email);
 
-    //check if terms are checked
+    // //check password strenth. (pass to this function the following options)
+    // // 1. Desired password length
+    // // 2. True if you want the password to contain both lowercase and uppercase letters
+    // // 3. True if you want the password checker to contain at least one special character
+     if (validatePassword(inputObject.pass,6,true,true))
+       console.log("Strong Password");
+    else
+       showPopOver("password","Weak Password");
+
+    // //check if terms are checked
     validateTerms();
-
-    //check password strenth. (pass to this function the following options)
-    // 1. Desired password length
-    // 2. True if you want the password to contain both lowercase and uppercase letters
-    // 3. True if you want the password checker to contain at least one special character
-    if (validatePassword(inputObject.pass,6,true,true))
-      console.log("Strong Password");
-
-
 
   });
 
@@ -50,8 +50,8 @@ $(document).ready(function () {
     if (inputObject.name == ""){
       //console.log($("#name").parentNode.addClass("has-error"));
       $("#name").parent().addClass('has-error');
-
       showPopOver("name");
+      removeHasError("#name");
       allBlank = true;
 
     }
@@ -61,6 +61,7 @@ $(document).ready(function () {
       $("#lastname").parent().addClass('has-error');
 
       showPopOver("lastName");
+      removeHasError("#lastname");
       allBlank = true;
     }
 
@@ -68,6 +69,7 @@ $(document).ready(function () {
       $("#nickname").parent().addClass('has-error');
 
       showPopOver("nickname");
+      removeHasError("#nickname");
       allBlank = true;
     }
 
@@ -76,6 +78,7 @@ $(document).ready(function () {
       $("#email").parent().addClass('has-error');
 
       showPopOver("email");
+      removeHasError("#email");
       allBlank = true;
 
     }
@@ -85,6 +88,7 @@ $(document).ready(function () {
       $("#password").parent().addClass('has-error');
 
       showPopOver("password");
+      removeHasError("#password");
       allBlank = true;
     }
 
@@ -114,13 +118,18 @@ $(document).ready(function () {
 
     if (!$("#terms").prop("checked")){
       console.log("terms are not checked");
+      alert("Please accept terms");
+      return false;
     }
+
+    return true;
   }
 
   function validatePassword(pass,passLength,lowerUpperLetters, specialCharacters) {
 
     var strength = 0;
 
+    console.log(pass.length);
     //check password length
     if (pass.length >= passLength)
       strength += 1;
@@ -153,14 +162,17 @@ $(document).ready(function () {
       return true;
     else if (strength == 3 && lowerUpperLetters && specialCharacters)
       return true;
-    else return false;
+    else {
+
+      return false;
+    }
 
 
   }
 
   //optionally send to this function a different msg to be displayed instead of the default one.
   function showPopOver(el, msg) {
-
+    console.log(msg);
     var popover = $("#" + el + "-bubble").popover({
       trigger : 'manual',
       placement : 'bottom',
@@ -174,6 +186,14 @@ $(document).ready(function () {
     window.setTimeout(function () {
       $("#" + el + "-bubble").popover('hide');
     }, 5000);
+
+  }
+
+  //remove the has-error class when the inputfield gets focus
+  function removeHasError(el){
+    $(el).focus(function() {
+      $(el).parent().removeClass('has-error');
+    });
 
   }
 });

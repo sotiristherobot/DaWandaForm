@@ -20,27 +20,21 @@ $(document).ready(function () {
       email : email,
       pass : pass
     };
-
     //check if there are any blank fields
-    validateBlank(inputObject);
+    if (validateBlank(inputObject)) {
 
-    // //check valid email
-    validateEmail(inputObject.email);
+      //check password strenth. (pass to this function the following options)
+      //  // // // 1. Desired password length
+      //  // // // 2. True if you want the password to contain both lowercase and uppercase letters
+      //  // // // 3. True if you want the password checker to contain at least one special character
+        if (validatePassword(inputObject.pass, 6, true, true) && validateEmail(inputObject.email)) {
 
-    // //check password strenth. (pass to this function the following options)
-    // // 1. Desired password length
-    // // 2. True if you want the password to contain both lowercase and uppercase letters
-    // // 3. True if you want the password checker to contain at least one special character
-     if (validatePassword(inputObject.pass,6,true,true))
-       console.log("Strong Password");
-    else
-       showPopOver("password","Weak Password");
-
-    // //check if terms are checked
-    validateTerms();
+          if (validateTerms())
+            alert("You made it pal, please login now");
+        }
+      }
 
   });
-
 
   //check if input boxes are blank
   function validateBlank(inputObject) {
@@ -107,6 +101,8 @@ $(document).ready(function () {
     if (!email.match(regex)){
       //console.log("invalid email");
       $("#email").parent().addClass('has-error');
+      showPopOver("email", "format not valid");
+      removeHasError("#email");
       return false;
     }
     else
@@ -116,20 +112,22 @@ $(document).ready(function () {
 
   function validateTerms() {
 
-    if (!$("#terms").prop("checked")){
-      console.log("terms are not checked");
-      alert("Please accept terms");
+
+    var checkBox = $('#terms');
+
+    if (checkBox.is(':checked'))
+      return true;
+    else {
+      alert("Please accept the terms");
       return false;
     }
 
-    return true;
   }
 
   function validatePassword(pass,passLength,lowerUpperLetters, specialCharacters) {
 
     var strength = 0;
 
-    console.log(pass.length);
     //check password length
     if (pass.length >= passLength)
       strength += 1;
@@ -163,7 +161,9 @@ $(document).ready(function () {
     else if (strength == 3 && lowerUpperLetters && specialCharacters)
       return true;
     else {
-
+      $("#password").parent().addClass('has-error');
+      showPopOver("password", "weak password");
+      removeHasError("#password");
       return false;
     }
 
@@ -172,7 +172,6 @@ $(document).ready(function () {
 
   //optionally send to this function a different msg to be displayed instead of the default one.
   function showPopOver(el, msg) {
-    console.log(msg);
     var popover = $("#" + el + "-bubble").popover({
       trigger : 'manual',
       placement : 'bottom',
@@ -184,7 +183,7 @@ $(document).ready(function () {
 
     //hide popover after some time.
     window.setTimeout(function () {
-      $("#" + el + "-bubble").popover('hide');
+      $("#" + el + "-bubble").popover('destroy');
     }, 5000);
 
   }

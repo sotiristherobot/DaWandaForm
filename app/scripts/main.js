@@ -4,13 +4,13 @@
 $(document).ready(function () {
 
   //event listener for submit buttons clicks
-  $("#submit").click(function () {
+  $('#submit').click(function () {
     //get values from form
-    var name = $("#name").val();
-    var lastName = $("#lastname").val();
-    var nickName = $("#nickname").val();
-    var email = $("#email").val();
-    var pass = $("#password").val();
+    var name = $('#name').val();
+    var lastName = $('#lastname').val();
+    var nickName = $('#nickname').val();
+    var email = $('#email').val();
+    var pass = $('#password').val();
 
     //place everything into an object
     var inputObject = {
@@ -30,7 +30,7 @@ $(document).ready(function () {
         if (validatePassword(inputObject.pass, 6, true, true) && validateEmail(inputObject.email)) {
 
           if (validateTerms())
-            alert("You made it pal, please login now");
+            alert('You made it pal, please login now');
         }
       }
 
@@ -41,48 +41,48 @@ $(document).ready(function () {
 
     var allBlank = false;
 
-    if (inputObject.name == ""){
+    if (inputObject.name == ''){
       //console.log($("#name").parentNode.addClass("has-error"));
-      $("#name").parent().addClass('has-error');
-      showPopOver("name");
-      removeHasError("#name");
+      $('#name').parent().addClass('has-error');
+      showPopOver('name');
+      removeHasError('#name');
       allBlank = true;
 
     }
 
-    if (inputObject.lastName == ""){
-      console.log("lastname cannot be blank");
-      $("#lastname").parent().addClass('has-error');
+    if (inputObject.lastName == ''){
+      console.log('lastname cannot be blank');
+      $('#lastname').parent().addClass('has-error');
 
-      showPopOver("lastName");
-      removeHasError("#lastname");
+      showPopOver('lastName');
+      removeHasError('#lastname');
       allBlank = true;
     }
 
-    if (inputObject.nickName == ""){
-      $("#nickname").parent().addClass('has-error');
+    if (inputObject.nickName == ''){
+      $('#nickname').parent().addClass('has-error');
 
-      showPopOver("nickname");
-      removeHasError("#nickname");
+      showPopOver('nickname');
+      removeHasError('#nickname');
       allBlank = true;
     }
 
-    if (inputObject.email == ""){
-      console.log("email cannot be blank");
-      $("#email").parent().addClass('has-error');
+    if (inputObject.email == ''){
+      console.log('email cannot be blank');
+      $('#email').parent().addClass('has-error');
 
-      showPopOver("email");
-      removeHasError("#email");
+      showPopOver('email');
+      removeHasError('#email');
       allBlank = true;
 
     }
 
-    if (inputObject.pass == ""){
-      console.log("pass cannot be blank");
-      $("#password").parent().addClass('has-error');
+    if (inputObject.pass == ''){
+      console.log('pass cannot be blank');
+      $('#password').parent().addClass('has-error');
 
-      showPopOver("password");
-      removeHasError("#password");
+      showPopOver('password');
+      removeHasError('#password');
       allBlank = true;
     }
 
@@ -100,9 +100,9 @@ $(document).ready(function () {
 
     if (!email.match(regex)){
       //console.log("invalid email");
-      $("#email").parent().addClass('has-error');
-      showPopOver("email", "format not valid");
-      removeHasError("#email");
+      $('#email').parent().addClass('has-error');
+      showPopOver('email', 'format not valid');
+      removeHasError('#email');
       return false;
     }
     else
@@ -118,7 +118,7 @@ $(document).ready(function () {
     if (checkBox.is(':checked'))
       return true;
     else {
-      alert("Please accept the terms");
+      alert('Please accept the terms');
       return false;
     }
 
@@ -161,9 +161,9 @@ $(document).ready(function () {
     else if (strength == 3 && lowerUpperLetters && specialCharacters)
       return true;
     else {
-      $("#password").parent().addClass('has-error');
-      showPopOver("password", "weak password");
-      removeHasError("#password");
+      $('#password').parent().addClass('has-error');
+      showPopOver('password', 'weak password');
+      removeHasError('#password');
       return false;
     }
 
@@ -172,18 +172,18 @@ $(document).ready(function () {
 
   //optionally send to this function a different msg to be displayed instead of the default one.
   function showPopOver(el, msg) {
-    var popover = $("#" + el + "-bubble").popover({
+    var popover = $('#' + el + '-bubble').popover({
       trigger : 'manual',
       placement : 'bottom',
-      content : msg || "muss ausgefullt werden",
+      content : msg || 'muss ausgefullt werden',
       template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
     });
 
-    $("#" + el + "-bubble").popover('show');
+    $('#' + el + '-bubble').popover('show');
 
     //hide popover after some time.
     window.setTimeout(function () {
-      $("#" + el + "-bubble").popover('destroy');
+      $('#' + el + '-bubble').popover('destroy');
     }, 5000);
 
   }

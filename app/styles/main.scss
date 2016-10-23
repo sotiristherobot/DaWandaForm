@@ -22,13 +22,26 @@ body {
 }
 
 #header{
-  margin-top: 10px;
+  position: relative;
+  height: 30px;
   width: 100%;
 }
-#header:after,
-#header:before{
-  content:"\00a0\00a0\00a0\00a0\00a0";
-  text-decoration:line-through;
+#line{
+  width: 100%;
+  height: 1px;
+  top:70%;
+  left:0;
+  background-color: #ccc;
+  position: absolute;
+  z-index: -100;
+}
+
+#header > p{
+  left:30%;
+  position: absolute;
+  top :39%;
+  z-index: 100;
+  background-color: #f8f7f3;
 }
 
 #form{
@@ -46,4 +59,15 @@ body {
 }
 .toUppercase{
   text-transform: uppercase;
+}
+.popover{
+  background-color: #f2dede;
+  border-color: #a94442;
+  color: #a94442;
+}
+.popover.bottom   .arrow:after {
+  border-bottom-color : #f2dede;
+}
+hr{
+  border-top: 2px solid #eeeeee;
 }
